@@ -1,0 +1,562 @@
+{
+  "intents": [
+    {
+      "intent": "stop",
+      "examples": [
+        {
+          "text": "I am done"
+        },
+        {
+          "text": "I will get back later"
+        },
+        {
+          "text": "no"
+        },
+        {
+          "text": "nothing"
+        },
+        {
+          "text": "Nothing else"
+        },
+        {
+          "text": "not now"
+        },
+        {
+          "text": "not ready"
+        },
+        {
+          "text": "That is it"
+        },
+        {
+          "text": "That's it"
+        },
+        {
+          "text": "thats it"
+        },
+        {
+          "text": "This is all"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "user_acceptor",
+      "examples": [
+        {
+          "text": "1"
+        },
+        {
+          "text": "accept"
+        },
+        {
+          "text": "acceptor"
+        }
+      ],
+      "description": "user : acceptor"
+    },
+    {
+      "intent": "user_donor",
+      "examples": [
+        {
+          "text": "2"
+        },
+        {
+          "text": "donate"
+        },
+        {
+          "text": "donor"
+        }
+      ],
+      "description": "type of user : donor"
+    }
+  ],
+  "entities": [
+    {
+      "entity": "stop",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "i don't need anything",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "no",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "nothing",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "nothing at this point",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "not needed now",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "stop",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "event_handler",
+      "parent": "node_7_1587445412065",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1587448261253",
+      "previous_sibling": "response_7_1587471238140"
+    },
+    {
+      "type": "standard",
+      "title": "Pincode",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your address ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1587728342859",
+      "context": {
+        "pincode": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_10_1587728408039"
+    },
+    {
+      "type": "standard",
+      "title": "User Acceptor",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "We will definitely help you finding food. Please enter quantity of food you want."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "context": {},
+      "conditions": "#user_acceptor && $next",
+      "dialog_node": "node_2_1587444787744"
+    },
+    {
+      "type": "standard",
+      "title": "Contact Number",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your name ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1587445412065",
+      "context": {
+        "contact_number": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_2_1587728284240"
+    },
+    {
+      "type": "standard",
+      "title": "Anything Else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "anything_else",
+      "dialog_node": "node_3_1587475880966",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Address",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks, $person_name. You have requested food for $quantity people from <? input.text ?>, $pincode. An sms will be sent to your number $contact_number with the details."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_10_1587728408039",
+      "conditions": "$next",
+      "dialog_node": "node_3_1627748203651"
+    },
+    {
+      "type": "standard",
+      "title": "Name",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your Pincode ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1587728284240",
+      "context": {
+        "person_name": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_5_1587728342859"
+    },
+    {
+      "type": "standard",
+      "title": "Address",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks $person_name for your donation. You have requested to donate food for $quantity people from <? input.text ?>, $pincode. An sms will be sent to your number $contact_number with the details."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1597907931967",
+      "conditions": "$next",
+      "dialog_node": "node_5_1627749266611"
+    },
+    {
+      "type": "standard",
+      "title": "Status Check",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Let us know when you are ready to place the order. Goodbye."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#stop",
+      "dialog_node": "node_6_1587455561988",
+      "previous_sibling": "node_9_1587454332998"
+    },
+    {
+      "type": "standard",
+      "title": "Pincode",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your address ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1597907871228",
+      "context": {
+        "pincode": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_6_1597907931967"
+    },
+    {
+      "type": "standard",
+      "title": "Quantity",
+      "output": {
+        "text": {
+          "values": [
+            "What is your contact number?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_2_1587444787744",
+      "context": {
+        "quantity": "<? input.text ?>"
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1587445412065"
+    },
+    {
+      "type": "standard",
+      "title": "Quantity",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your contact number?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1587454332998",
+      "context": {
+        "quantity": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1597907687414"
+    },
+    {
+      "type": "standard",
+      "title": "Contact Number",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your name ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1597907687414",
+      "context": {
+        "contact_number": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1597907804178"
+    },
+    {
+      "type": "standard",
+      "title": "Name",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "What is your Pincode ?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1597907804178",
+      "context": {
+        "person_name": "<? input.text ?>"
+      },
+      "conditions": "$next",
+      "dialog_node": "node_7_1597907871228"
+    },
+    {
+      "type": "standard",
+      "title": "User donor",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanks for your generosity. Please enter quantity of food you want to donate."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "conditions": "#user_donor",
+      "dialog_node": "node_9_1587454332998",
+      "previous_sibling": "node_2_1587444787744"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1587475880966",
+      "disabled": true,
+      "dialog_node": "response_6_1587476639001"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "text": {
+          "values": [
+            "next product?"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "node_7_1587445412065",
+      "context": {
+        "order_details_1": "<? input.text ?>"
+      },
+      "disabled": true,
+      "conditions": "$next",
+      "dialog_node": "response_7_1587471238140",
+      "previous_sibling": "node_2_1587728284240"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, Welcome to food for all !"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          },
+          {
+            "title": "",
+            "options": [
+              {
+                "label": "Press 1 if you are a receiver",
+                "value": {
+                  "input": {
+                    "text": "accept"
+                  }
+                }
+              },
+              {
+                "label": "Press 2 if you are a donor",
+                "value": {
+                  "input": {
+                    "text": "donate"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          },
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "context": {
+        "next": true
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "zero-hunger",
+  "language": "en",
+  "description": ""
+}
