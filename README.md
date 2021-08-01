@@ -15,6 +15,7 @@ Receiver: Any person in need of food, requesting for themself or on behalf of so
 
 ### Flow
 
+![image](https://user-images.githubusercontent.com/88237381/127761965-4b5f7343-a919-48c4-92b1-2216c6a93944.png)
 
 
 Food For All Application flow 
