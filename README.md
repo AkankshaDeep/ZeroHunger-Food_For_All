@@ -18,15 +18,15 @@ Receiver: Any person in need of food, requesting for themself or on behalf of so
 ![image](https://user-images.githubusercontent.com/88237381/127761965-4b5f7343-a919-48c4-92b1-2216c6a93944.png)
 
 
-Food For All Application flow 
-    1. The User(donor/receiver) makes a call to the Tollfree number to register their request.
-    2.  We use the Text to speech +Watson Services to create an audio chatbot and Speech to Text +Natural Language Processing services to log the request.
-    3. Once the request is received, the Request Processing Service of the application makes a call to the Maps API to get the required location data. This  
-       service then extracts the attributes like request type: donor/receiver, address, pin code, Quantity, etc to create a query.
-    4. The query then inserts all acquired data into the database.
-    5. Once the data has been successfully saved in the database, the Request Processing Service sends back a confirmation message.
-    6. For the user, who was of type 'receiver', the message includes the address of the nearest food donor where food is currently available. For users who were        of type 'donor,' the message includes a confirmation and appreciation note.
-    The mapping of the donor with a receiver is done by deploying AI-based data processing based on various factors like the quantity of food required by the receiver, quantity of food available with the donors, location of donor and receiver, etc.
+1. The User(donor/receiver) makes a call to the Tollfree number to register their request.
+2.  We use the Text to speech +Watson Services to create an audio chatbot and Speech to Text +Natural Language Processing services to log the request.
+3. Once the request is received, the Request Processing Service of the application makes a call to the Maps API to get the required location data. This  
+   service then extracts the attributes like request type: donor/receiver, address, pin code, Quantity, etc to create a query.
+4. The query then inserts all acquired data into the database.
+5. Once the data has been successfully saved in the database, the Request Processing Service sends back a confirmation message.
+6. For the user, who was of type 'receiver', the message includes the address of the nearest food donor where food is currently available. For users who were        of type 'donor,' the message includes a confirmation and appreciation note.
+
+The mapping of the donor with a receiver is done by deploying AI-based data processing based on various factors like the quantity of food required by the receiver, quantity of food available with the donors, location of donor and receiver, etc.
 In the above flow, as soon the system receives a request for food from a 'receiver' the system selects an appropriate and available food donor and maps it to the 'receiver' and sends the response back immediately with donor information.
 
 However, if there were no available donors in the system at the time the request was logged by 'receiver', the system sends just a request acceptance message. When a donor becomes available the application sends another message to the receiver whose request was previously unfulfilled with information about the location of the food donor. 
