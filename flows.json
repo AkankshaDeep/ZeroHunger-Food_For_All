@@ -7,27 +7,6 @@
         "info": ""
     },
     {
-        "id": "56dd746af6583000",
-        "type": "tab",
-        "label": "insert and show data",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "55199872bee11751",
-        "type": "tab",
-        "label": "json",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "fed8c48e1b256f15",
-        "type": "tab",
-        "label": "db-switch",
-        "disabled": false,
-        "info": ""
-    },
-    {
         "id": "af8f23d0f69edeed",
         "type": "tab",
         "label": "Dashboard",
@@ -38,13 +17,6 @@
         "id": "ce8850f1c363c85e",
         "type": "tab",
         "label": "Msg confirmation",
-        "disabled": false,
-        "info": ""
-    },
-    {
-        "id": "50e27461172d114a",
-        "type": "tab",
-        "label": "Flow 3",
         "disabled": false,
         "info": ""
     },
@@ -66,11 +38,11 @@
         "name": "Demo creds"
     },
     {
-        "id": "40e7c0f041fe400c",
+        "id": "d35ea2e08075f3e7",
         "type": "twilio-api",
         "name": "",
-        "sid": "ACcc089022153aa248951814151c2209fa",
-        "from": "+19135348365"
+        "sid": "ACa0d6871ae0d1fcd609ad2354d75a2bba",
+        "from": "+14157920929"
     },
     {
         "id": "1a5bc29ae6d9b55c",
@@ -143,270 +115,6 @@
         ]
     },
     {
-        "id": "89d93d2596754de5",
-        "type": "sqlite",
-        "z": "56dd746af6583000",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "msg.topic",
-        "sql": "SELECT * from donor",
-        "name": "db",
-        "x": 510,
-        "y": 60,
-        "wires": [
-            [
-                "e76d277d2f84d8fe"
-            ]
-        ]
-    },
-    {
-        "id": "369131853d2cb8ed",
-        "type": "inject",
-        "z": "56dd746af6583000",
-        "name": "insert",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"mobile\":\"9876543210\",\"name\":\"s\",\"pincode\":831001,\"qty\":3}",
-        "payloadType": "json",
-        "x": 140,
-        "y": 60,
-        "wires": [
-            [
-                "e2b084efe61e982a"
-            ]
-        ]
-    },
-    {
-        "id": "a9bb25f7c98aece2",
-        "type": "debug",
-        "z": "56dd746af6583000",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 340,
-        "wires": []
-    },
-    {
-        "id": "e76d277d2f84d8fe",
-        "type": "sqlite",
-        "z": "56dd746af6583000",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "fixed",
-        "sql": "SELECT * FROM donor",
-        "name": "db select",
-        "x": 230,
-        "y": 320,
-        "wires": [
-            [
-                "a9bb25f7c98aece2"
-            ]
-        ]
-    },
-    {
-        "id": "e57bd6d9f7969f8d",
-        "type": "inject",
-        "z": "56dd746af6583000",
-        "name": "show records",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "SELECT * FROM donor",
-        "payloadType": "date",
-        "x": 100,
-        "y": 220,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "e2b084efe61e982a",
-        "type": "function",
-        "z": "56dd746af6583000",
-        "name": "insert",
-        "func": "var newMsg={\"topic\":\"INSERT INTO donor(mobile,name,pincode,qty) VALUES (8529637412,'abc',789456,25)\"};\nreturn newMsg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 320,
-        "y": 80,
-        "wires": [
-            [
-                "89d93d2596754de5"
-            ]
-        ]
-    },
-    {
-        "id": "a8f20978eadc8301",
-        "type": "inject",
-        "z": "55199872bee11751",
-        "name": "insert",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "INSERT INTO donor(mobile,name,pincode,qty) VALUES(?,?,?,?);",
-        "payload": "{     \"mobile\": 9876543210,     \"name\": \"s\",     \"pincode\": 831001,     \"qty\": 3 }",
-        "payloadType": "json",
-        "x": 90,
-        "y": 60,
-        "wires": [
-            [
-                "dc516c6306115b42"
-            ]
-        ]
-    },
-    {
-        "id": "781a066fd8507f29",
-        "type": "sqlite",
-        "z": "55199872bee11751",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "db",
-        "x": 320,
-        "y": 120,
-        "wires": [
-            [
-                "93040802f72b8aa1"
-            ]
-        ]
-    },
-    {
-        "id": "93040802f72b8aa1",
-        "type": "sqlite",
-        "z": "55199872bee11751",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "fixed",
-        "sql": "SELECT * FROM donor;",
-        "name": "select",
-        "x": 490,
-        "y": 120,
-        "wires": [
-            [
-                "4e923378cd898f4c"
-            ]
-        ]
-    },
-    {
-        "id": "4e923378cd898f4c",
-        "type": "debug",
-        "z": "55199872bee11751",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 680,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "e5d44ba1b86b27f4",
-        "type": "debug",
-        "z": "55199872bee11751",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 490,
-        "y": 440,
-        "wires": []
-    },
-    {
-        "id": "674c0085cea18a5f",
-        "type": "function",
-        "z": "55199872bee11751",
-        "name": "",
-        "func": "var obj=msg.payoad;\nvar temp=JSON.stringify(obj);\nmsg.topic=\"INSERT INTO test(name) VALUES('\"+temp+\"')\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 420,
-        "wires": [
-            [
-                "e5d44ba1b86b27f4"
-            ]
-        ]
-    },
-    {
-        "id": "7da2b1e2eb3f8b6c",
-        "type": "inject",
-        "z": "55199872bee11751",
-        "name": "insert Test",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "{\"name\":\"ABC\"}",
-        "payloadType": "json",
-        "x": 110,
-        "y": 420,
-        "wires": [
-            [
-                "674c0085cea18a5f"
-            ]
-        ]
-    },
-    {
         "id": "9f312f788f629d97",
         "type": "inject",
         "z": "6901d5531f4ff865",
@@ -463,298 +171,6 @@
         ]
     },
     {
-        "id": "dc516c6306115b42",
-        "type": "function",
-        "z": "55199872bee11751",
-        "name": "",
-        "func": "var obj=msg.payload;\nvar name=msg.payload.name;\nvar mobile=msg.payload.mobile;\nvar pincode=msg.payload.pincode;\nvar qty=msg.payload.qty;\nmsg.topic=\"INSERT INTO donor(mobile,name,pincode,qty) VALUES(\"+mobile+\",\\'\"+name+\"\\'\"+\",\"+pincode+\",\"+qty+\")\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 260,
-        "y": 60,
-        "wires": [
-            [
-                "781a066fd8507f29"
-            ]
-        ]
-    },
-    {
-        "id": "94e3ef2d54e44c65",
-        "type": "sqlite",
-        "z": "fed8c48e1b256f15",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "db",
-        "x": 410,
-        "y": 180,
-        "wires": [
-            [
-                "8af6a20926784ab2"
-            ]
-        ]
-    },
-    {
-        "id": "8af6a20926784ab2",
-        "type": "sqlite",
-        "z": "fed8c48e1b256f15",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "fixed",
-        "sql": "SELECT * FROM donor;",
-        "name": "select",
-        "x": 530,
-        "y": 180,
-        "wires": [
-            [
-                "894d9fff081e6fa7",
-                "ea11ec722f2ccae9"
-            ]
-        ]
-    },
-    {
-        "id": "894d9fff081e6fa7",
-        "type": "debug",
-        "z": "fed8c48e1b256f15",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "0db0a59271b3fc40",
-        "type": "function",
-        "z": "fed8c48e1b256f15",
-        "name": "",
-        "func": "var obj=msg.payload;\nvar type=1;\nvar name=msg.payload.name;\nvar mobile=msg.payload.mobile;\nvar pincode=msg.payload.pincode;\nvar qty=msg.payload.qty;\nmsg.topic=\"INSERT INTO donor(type,mobile,name,pincode,qty) VALUES(\"+type+\",\"+mobile+\",\\'\"+name+\"\\'\"+\",\"+pincode+\",\"+qty+\")\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 280,
-        "y": 180,
-        "wires": [
-            [
-                "94e3ef2d54e44c65"
-            ]
-        ]
-    },
-    {
-        "id": "8ce29d348a99b0f4",
-        "type": "debug",
-        "z": "fed8c48e1b256f15",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 690,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "882392ef7fe4c3c9",
-        "type": "sqlite",
-        "z": "fed8c48e1b256f15",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "fixed",
-        "sql": "SELECT * FROM receiver;",
-        "name": "select",
-        "x": 550,
-        "y": 280,
-        "wires": [
-            [
-                "8ce29d348a99b0f4"
-            ]
-        ]
-    },
-    {
-        "id": "a363210e01e835eb",
-        "type": "sqlite",
-        "z": "fed8c48e1b256f15",
-        "mydb": "2d5afe756518ba8e",
-        "sqlquery": "msg.topic",
-        "sql": "",
-        "name": "db",
-        "x": 430,
-        "y": 280,
-        "wires": [
-            [
-                "882392ef7fe4c3c9"
-            ]
-        ]
-    },
-    {
-        "id": "0f0c8c7a196a81ff",
-        "type": "function",
-        "z": "fed8c48e1b256f15",
-        "name": "",
-        "func": "var obj=msg.payload;\nvar type=2;\nvar name=msg.payload.name;\nvar mobile=msg.payload.mobile;\nvar pincode=msg.payload.pincode;\nvar qty=msg.payload.qty;\nmsg.topic=\"INSERT INTO receiver(type,mobile,name,pincode,qty) VALUES(\"+type+\",\"+mobile+\",\\'\"+name+\"\\'\"+\",\"+pincode+\",\"+qty+\")\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 300,
-        "y": 280,
-        "wires": [
-            [
-                "a363210e01e835eb"
-            ]
-        ]
-    },
-    {
-        "id": "cc6b8614013a708c",
-        "type": "switch",
-        "z": "fed8c48e1b256f15",
-        "name": "",
-        "property": "payload.type",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "1",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "2",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 150,
-        "y": 240,
-        "wires": [
-            [
-                "0db0a59271b3fc40"
-            ],
-            [
-                "0f0c8c7a196a81ff"
-            ]
-        ]
-    },
-    {
-        "id": "8ead3fcbdca71d00",
-        "type": "inject",
-        "z": "fed8c48e1b256f15",
-        "name": "insert",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "INSERT INTO receiver(type,mobile,name,pincode,qty) VALUES(?,?,?,?,?);",
-        "payload": "{  \"type\": 2,   \"mobile\": 9876543210,     \"name\": \"s\",     \"pincode\": 831001,     \"qty\": 3 }",
-        "payloadType": "json",
-        "x": 110,
-        "y": 300,
-        "wires": [
-            [
-                "cc6b8614013a708c"
-            ]
-        ]
-    },
-    {
-        "id": "5b5fcd3c073ba4bc",
-        "type": "inject",
-        "z": "fed8c48e1b256f15",
-        "name": "insert",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "INSERT INTO donor(type,mobile,name,pincode,qty) VALUES(?,?,?,?,?);",
-        "payload": "{  \"type\": 1,   \"mobile\": 9876543210,     \"name\": \"s\",     \"pincode\": 831001,     \"qty\": 3 }",
-        "payloadType": "json",
-        "x": 110,
-        "y": 180,
-        "wires": [
-            [
-                "cc6b8614013a708c"
-            ]
-        ]
-    },
-    {
-        "id": "9274822334718ecf",
-        "type": "http in",
-        "z": "55199872bee11751",
-        "name": "GET/hello",
-        "url": "/hello",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 150,
-        "y": 240,
-        "wires": [
-            [
-                "85dabcb8c24cdfcc"
-            ]
-        ]
-    },
-    {
-        "id": "85dabcb8c24cdfcc",
-        "type": "template",
-        "z": "55199872bee11751",
-        "name": "template",
-        "field": "payload",
-        "fieldType": "msg",
-        "format": "html",
-        "syntax": "plain",
-        "template": "<html lang=\"en\">\n<head>   \n<meta charset=\"UTF-8\">\n<title>Page Title</title>\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n</head>\n<body>\n<h1>Hello</h1>\n</body>\n</html>",
-        "output": "str",
-        "x": 330,
-        "y": 240,
-        "wires": [
-            [
-                "0b40e0df016ac5b4"
-            ]
-        ]
-    },
-    {
-        "id": "0b40e0df016ac5b4",
-        "type": "http response",
-        "z": "55199872bee11751",
-        "name": "http",
-        "statusCode": "",
-        "headers": {},
-        "x": 540,
-        "y": 240,
-        "wires": []
-    },
-    {
         "id": "d3f92a2001b3f2f9",
         "type": "http in",
         "z": "af8f23d0f69edeed",
@@ -780,7 +196,7 @@
         "fieldType": "msg",
         "format": "html",
         "syntax": "plain",
-        "template": "<html lang=\"en\">\n<head>   \n<meta charset=\"UTF-8\">\n<title>Food4All</title>\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n</head>\n<body>\n   <div class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n      <div class=\"container\">\n        <a href=\"../home\" class=\"navbar-brand\"><i>Food4All</i></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n          <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n          <ul class=\"navbar-nav\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/donor\">Donor Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/receiver\">Receiver Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"https://blog.bootswatch.com/\">Blog</a>\n            </li>\n            \n          </ul>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"container\">\n      <div class=\"page-header\" id=\"banner\">\n        <div class=\"row\">\n          <div class=\"col-lg-8 col-md-7 col-sm-6\">\n            <h1>ZERO HUNGER</h1>\n            <p class=\"lead\"></p>\n          </div>\n          <div class=\"container\">\n      <blockquote class=\"blockquote text-center text-success\">\n        <p style=\"font-style:italic\">If you cant feed a hundred people, then just feed one </p>\n        <footer class=\"blockquote-footer\">Mother Teresa</footer>\n      </blockquote>\n</div>\n          \n        </div>\n      </div>\n</body>\n</html>",
+        "template": "<html lang=\"en\">\n<head>   \n<meta charset=\"UTF-8\">\n<title>Food4All</title>\n<link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n</head>\n<body>\n   <div class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n      <div class=\"container\">\n        <a href=\"../home\" class=\"navbar-brand\"><i>Food4All</i></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n          <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n          <ul class=\"navbar-nav\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/donor\">Donor Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/receiver\">Receiver Data</a>\n            </li>\n           </ul>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"container\">\n      <div class=\"page-header\" id=\"banner\">\n        <div class=\"row\">\n          <div class=\"col-lg-8 col-md-7 col-sm-6\">\n            <h1>ZERO HUNGER</h1>\n            <p class=\"lead\"></p>\n          </div>\n          <div class=\"container\">\n      <blockquote class=\"blockquote text-center text-success\">\n        <p style=\"font-style:italic\">If you cant feed a hundred people, then just feed one </p>\n        <footer class=\"blockquote-footer\">Mother Teresa</footer>\n      </blockquote>\n</div>\n          \n        </div>\n      </div>\n      </div>\n      \n \n</body>\n</html>",
         "output": "str",
         "x": 320,
         "y": 120,
@@ -827,7 +243,7 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Food4All</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n   \n    \n  </head>\n  <body>\n    <div class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n      <div class=\"container\">\n        <a href=\"../home\" class=\"navbar-brand\"><i>Food4All</i></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n          <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n          <ul class=\"navbar-nav\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/donor\">Donor Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/receiver\">Receiver Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"https://blog.bootswatch.com/\">Blog</a>\n            </li>\n            \n          </ul>\n        </div>\n      </div>\n    </div>\n\n\n    <div class=\"container\">\n\n      <div class=\"page-header\" id=\"banner\">\n        <div class=\"row\">\n          <div class=\"col-lg-8 col-md-7 col-sm-6\">\n            \n            <h1><i>Food4All</i></h1>\n            \n          </div>\n        </div>\n        \n      </div>\n\n     \n      <!-- Tables\n      ================================================== -->\n      <div class=\"bs-docs-section\">\n\n        <div class=\"row\">\n          <div class=\"col-lg-12\">\n            <div class=\"page-header\">\n              <h3 id=\"tables\">Donor Details</h3>\n            </div>\n\n            <div class=\"bs-component\">\n              <table class=\"table table-striped table-hover \">\n                <thead>\n                  <tr class=\"dark\">\n                    <th>#</th>\n                    <th>Phone no</th>\n                    <th>Name</th>\n                    <th>Pincode</th>\n                    <th>Quantity</th>\n                  </tr>\n                </thead>\n                <tbody>\n                    {{#payload}}\n                  <tr>\n                    <td>1</td>\n                    <td>{{mobile}}</td>\n                    <td>{{name}}</td>\n                    <td>{{pincode}}</td>\n                    <td>{{qty}}</td>\n                  </tr>\n                  {{/payload}}\n                  \n                </tbody>\n              </table>\n            </div><!-- /example -->\n          </div>\n        </div>\n      </div>\n\n     \n\n\n    </div>\n\n\n    <script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script><script src=\"https://code.jquery.com/jquery-1.10.2.min.js\"></script>\n    <script src=\"../bower_components/bootstrap/dist/js/bootstrap.min.js\"></script>\n    <script src=\"../assets/js/custom.js\"></script>\n  </body>\n</html>\n",
+        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Food4All</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n   \n    \n  </head>\n  <body>\n    <div class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n      <div class=\"container\">\n        <a href=\"../home\" class=\"navbar-brand\"><i>Food4All</i></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n          <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n          <ul class=\"navbar-nav\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/donor\">Donor Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/receiver\">Receiver Data</a>\n            </li>\n           </ul>\n        </div>\n      </div>\n    </div>\n\n\n    <div class=\"container\">\n\n      <div class=\"page-header\" id=\"banner\">\n        <div class=\"row\">\n          <div class=\"col-lg-8 col-md-7 col-sm-6\">\n            \n            <h1><i>Food4All</i></h1>\n            \n          </div>\n        </div>\n        \n      </div>\n\n\n      <!-- Tables\n      ================================================== -->\n      <div class=\"bs-docs-section\">\n\n        <div class=\"row\">\n          <div class=\"col-lg-12\">\n            <div class=\"page-header\">\n              <h3 id=\"tables\">Donor Details</h3>\n            </div>\n\n            <div class=\"bs-component\">\n              <table class=\"table table-striped table-hover \">\n                <thead>\n                  <tr class=\"dark\">\n                    <th>#</th>\n                    <th>Phone no</th>\n                    <th>Name</th>\n                    <th>Pincode</th>\n                    <th>Quantity</th>\n                  </tr>\n                </thead>\n                <tbody>\n                    {{#payload}}\n                  <tr>\n                    <td>1</td>\n                    <td>{{mobile}}</td>\n                    <td>{{name}}</td>\n                    <td>{{pincode}}</td>\n                    <td>{{qty}}</td>\n                  </tr>\n                  {{/payload}}\n                  \n                </tbody>\n              </table>\n            </div><!-- /example -->\n          </div>\n        </div>\n      </div>\n\n     \n\n\n    </div>\n\n\n    <script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script><script src=\"https://code.jquery.com/jquery-1.10.2.min.js\"></script>\n    <script src=\"../bower_components/bootstrap/dist/js/bootstrap.min.js\"></script>\n    <script src=\"../assets/js/custom.js\"></script>\n  </body>\n</html>\n",
         "output": "str",
         "x": 480,
         "y": 240,
@@ -880,108 +296,6 @@
         "statusType": "auto",
         "x": 480,
         "y": 320,
-        "wires": []
-    },
-    {
-        "id": "7859907c553969cc",
-        "type": "inject",
-        "z": "50e27461172d114a",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payloadType": "date",
-        "x": 130,
-        "y": 120,
-        "wires": [
-            [
-                "30aeb47f86d70da7"
-            ]
-        ]
-    },
-    {
-        "id": "30aeb47f86d70da7",
-        "type": "function",
-        "z": "50e27461172d114a",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 310,
-        "y": 160,
-        "wires": [
-            [
-                "c470bec85298d0df"
-            ]
-        ]
-    },
-    {
-        "id": "c470bec85298d0df",
-        "type": "debug",
-        "z": "50e27461172d114a",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 640,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "3cef113de26faa9e",
-        "type": "twilio out",
-        "z": "50e27461172d114a",
-        "twilio": "40e7c0f041fe400c",
-        "twilioType": "sms",
-        "url": "",
-        "number": "+918249187652",
-        "name": "",
-        "x": 490,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "ea11ec722f2ccae9",
-        "type": "twilio out",
-        "z": "fed8c48e1b256f15",
-        "twilio": "40e7c0f041fe400c",
-        "twilioType": "sms",
-        "url": "",
-        "number": "+918249187652",
-        "name": "",
-        "x": 710,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "0148b47541b16cce",
-        "type": "twilio out",
-        "z": "fed8c48e1b256f15",
-        "twilio": "40e7c0f041fe400c",
-        "twilioType": "sms",
-        "url": "",
-        "number": "+918249187652",
-        "name": "",
-        "x": 730,
-        "y": 300,
         "wires": []
     },
     {
@@ -1105,7 +419,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "INSERT INTO donor(type,mobile,name,pincode,qty) VALUES(?,?,?,?,?);",
-        "payload": "{  \"type\": 1,   \"mobile\": 9876543210,     \"name\": \"s\",     \"pincode\": 831001,     \"qty\": 3,\"address\":\"H No-3, near Shoppers Mart, Main Road, Sakshi,Jamshedpur,India\" }",
+        "payload": "{ \"type\": 1, \"mobile\": 9876543210, \"name\": \"Aki\", \"pincode\": 831001, \"qty\": 2, \"address\": \"Near Raj Store,Sakshi,Jamshedpur,India\" }",
         "payloadType": "json",
         "x": 90,
         "y": 280,
@@ -1114,19 +428,6 @@
                 "1105bfabacc489b3"
             ]
         ]
-    },
-    {
-        "id": "a2772b9f71d35b80",
-        "type": "twilio out",
-        "z": "ce8850f1c363c85e",
-        "twilio": "40e7c0f041fe400c",
-        "twilioType": "sms",
-        "url": "",
-        "number": "+918249187652",
-        "name": "",
-        "x": 770,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "259a52a03855376f",
@@ -1196,7 +497,8 @@
         "wires": [
             [
                 "45854fa2c017d342",
-                "f7226f12d0705d7c"
+                "f7226f12d0705d7c",
+                "80b09ed3f7dd6870"
             ]
         ]
     },
@@ -1288,7 +590,7 @@
         "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Food4All</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n   \n    \n  </head>\n  <body>\n    <div class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n      <div class=\"container\">\n        <a href=\"../home\" class=\"navbar-brand\"><i>Food4All</i></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n          <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n          <ul class=\"navbar-nav\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/donor\">Donor Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/receiver\">Receiver Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"https://blog.bootswatch.com/\">Blog</a>\n            </li>\n            \n          </ul>\n        </div>\n      </div>\n    </div>\n\n\n    <div class=\"container\">\n\n      <div class=\"page-header\" id=\"banner\">\n        <div class=\"row\">\n          <div class=\"col-lg-8 col-md-7 col-sm-6\">\n            \n            <h1><i>Food4All</i></h1>\n            \n          </div>\n        </div>\n        \n      </div>\n\n     \n      <!-- Tables\n      ================================================== -->\n      <div class=\"bs-docs-section\">\n\n        <div class=\"row\">\n          <div class=\"col-lg-12\">\n            <div class=\"page-header\">\n              <h3 id=\"tables\">Receiver Details</h3>\n            </div>\n\n            <div class=\"bs-component\">\n              <table class=\"table table-striped table-hover \">\n                <thead>\n                  <tr class=\"dark\">\n                    <th>#</th>\n                    <th>Phone no</th>\n                    <th>Name</th>\n                    <th>Pincode</th>\n                    <th>Quantity</th>\n                  </tr>\n                </thead>\n                <tbody>\n                    {{#payload}}\n                  <tr>\n                    <td>1</td>\n                    <td>{{mobile}}</td>\n                    <td>{{name}}</td>\n                    <td>{{pincode}}</td>\n                    <td>{{qty}}</td>\n                  </tr>\n                  {{/payload}}\n                  \n                </tbody>\n              </table>\n            </div><!-- /example -->\n          </div>\n        </div>\n      </div>\n\n     \n\n\n    </div>\n\n\n    <script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script><script src=\"https://code.jquery.com/jquery-1.10.2.min.js\"></script>\n    <script src=\"../bower_components/bootstrap/dist/js/bootstrap.min.js\"></script>\n    <script src=\"../assets/js/custom.js\"></script>\n  </body>\n</html>\n",
+        "template": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>Food4All</title>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n   <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/superhero/bootstrap.min.css\" integrity=\"sha384-HnTY+mLT0stQlOwD3wcAzSVAZbrBp141qwfR4WfTqVQKSgmcgzk+oP0ieIyrxiFO\" crossorigin=\"anonymous\">\n   \n    \n  </head>\n  <body>\n    <div class=\"navbar navbar-expand-lg fixed-top navbar-dark bg-dark\">\n      <div class=\"container\">\n        <a href=\"../home\" class=\"navbar-brand\"><i>Food4All</i></a>\n        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n          <span class=\"navbar-toggler-icon\"></span>\n        </button>\n        <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n          <ul class=\"navbar-nav\">\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/donor\">Donor Data</a>\n            </li>\n            <li class=\"nav-item\">\n              <a class=\"nav-link\" href=\"../home/receiver\">Receiver Data</a>\n            </li>\n           </ul>\n        </div>\n      </div>\n    </div>\n\n\n    <div class=\"container\">\n\n      <div class=\"page-header\" id=\"banner\">\n        <div class=\"row\">\n          <div class=\"col-lg-8 col-md-7 col-sm-6\">\n            \n            <h1><i>Food4All</i></h1>\n            \n          </div>\n        </div>\n        \n      </div>\n\n     \n      <!-- Tables\n      ================================================== -->\n      <div class=\"bs-docs-section\">\n\n        <div class=\"row\">\n          <div class=\"col-lg-12\">\n            <div class=\"page-header\">\n              <h3 id=\"tables\">Receiver Details</h3>\n            </div>\n\n            <div class=\"bs-component\">\n              <table class=\"table table-striped table-hover \">\n                <thead>\n                  <tr class=\"dark\">\n                    <th>#</th>\n                    <th>Phone no</th>\n                    <th>Name</th>\n                    <th>Pincode</th>\n                    <th>Quantity</th>\n                  </tr>\n                </thead>\n                <tbody>\n                    {{#payload}}\n                  <tr>\n                    <td>1</td>\n                    <td>{{mobile}}</td>\n                    <td>{{name}}</td>\n                    <td>{{pincode}}</td>\n                    <td>{{qty}}</td>\n                  </tr>\n                  {{/payload}}\n                  \n                </tbody>\n              </table>\n            </div><!-- /example -->\n          </div>\n        </div>\n      </div>\n\n     \n\n\n    </div>\n\n\n    <script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script><script src=\"https://code.jquery.com/jquery-1.10.2.min.js\"></script>\n    <script src=\"../bower_components/bootstrap/dist/js/bootstrap.min.js\"></script>\n    <script src=\"../assets/js/custom.js\"></script>\n  </body>\n</html>\n",
         "output": "str",
         "x": 500,
         "y": 400,
@@ -1408,21 +710,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 900,
-        "y": 420,
-        "wires": []
-    },
-    {
-        "id": "bacd8aca4d92c9fb",
-        "type": "twilio out",
-        "z": "ce8850f1c363c85e",
-        "twilio": "40e7c0f041fe400c",
-        "twilioType": "sms",
-        "url": "",
-        "number": "+918249187652",
-        "name": "",
-        "x": 770,
-        "y": 480,
+        "x": 960,
+        "y": 400,
         "wires": []
     },
     {
@@ -1456,7 +745,8 @@
         "y": 420,
         "wires": [
             [
-                "338167d98d67c469"
+                "338167d98d67c469",
+                "d8cf089d86c83e29"
             ]
         ]
     },
@@ -1471,8 +761,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
-        "y": 420,
+        "x": 780,
+        "y": 380,
         "wires": [
             [
                 "d902a1f2b40ad5a6"
@@ -1567,46 +857,12 @@
         "sql": "SELECT * FROM DONOR;",
         "name": "select receiver",
         "x": 1120,
-        "y": 140,
+        "y": 120,
         "wires": [
             [
-                "96694ac372e1e4c8"
+                "b88ac1a4ce269148"
             ]
         ]
-    },
-    {
-        "id": "ddb38047e98b0930",
-        "type": "debug",
-        "z": "ce8850f1c363c85e",
-        "name": "donor matching",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1660,
-        "y": 80,
-        "wires": []
-    },
-    {
-        "id": "8acbc7c6bdf137a7",
-        "type": "debug",
-        "z": "ce8850f1c363c85e",
-        "name": "not found pin",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1470,
-        "y": 240,
-        "wires": []
     },
     {
         "id": "f7226f12d0705d7c",
@@ -1623,60 +879,162 @@
         "y": 140,
         "wires": [
             [
-                "3829993340d9e2b0"
+                "3829993340d9e2b0",
+                "f36897e1e13814e5",
+                "5232b5ad0cb34369"
             ]
         ]
     },
     {
-        "id": "96694ac372e1e4c8",
-        "type": "switch",
+        "id": "f36897e1e13814e5",
+        "type": "debug",
         "z": "ce8850f1c363c85e",
-        "name": "cond to reduce",
-        "property": "payload.qty",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "qtyR",
-                "vt": "flow"
-            },
-            {
-                "t": "gt",
-                "v": "qtyR",
-                "vt": "flow"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 1330,
-        "y": 160,
-        "wires": [
-            [
-                "bfb95ff6d3132580"
-            ],
-            [
-                "8acbc7c6bdf137a7"
-            ]
-        ]
+        "name": "select donor",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1080,
+        "y": 220,
+        "wires": []
     },
     {
-        "id": "bfb95ff6d3132580",
+        "id": "6f9368322eb2a6d0",
+        "type": "twilio out",
+        "z": "ce8850f1c363c85e",
+        "twilio": "d35ea2e08075f3e7",
+        "twilioType": "sms",
+        "url": "",
+        "number": "+919734763814",
+        "name": "",
+        "x": 1450,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b88ac1a4ce269148",
         "type": "function",
         "z": "ce8850f1c363c85e",
         "name": "",
-        "func": "var qR=flow.get(\"qtyR\");\nvar qD=msg.payload.qty;\nvar m=qR+\";\"+qD;\nmsg.payload=m;\nreturn msg;",
+        "func": "var name=flow.get(\"nameR\");\nvar obj=msg.payload;\nvar temp=JSON.stringify(obj);\nvar m=\"Hello \"+name+\" Please collect your food from below location.\";\nm=m+temp+\" Bon Appetit!\";\nmsg.payload=m;\nvar t=\"+918249187652\";\nmsg.topic=t;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1490,
-        "y": 140,
+        "x": 1390,
+        "y": 120,
         "wires": [
             [
-                "ddb38047e98b0930"
+                "a5eba4ea929deca8",
+                "6f9368322eb2a6d0"
             ]
         ]
+    },
+    {
+        "id": "a5eba4ea929deca8",
+        "type": "debug",
+        "z": "ce8850f1c363c85e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1620,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "5232b5ad0cb34369",
+        "type": "change",
+        "z": "ce8850f1c363c85e",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "mobileRes",
+                "pt": "flow",
+                "to": "payload.mobile",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "nameRes",
+                "pt": "flow",
+                "to": "payload.name",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "qtyRes",
+                "pt": "flow",
+                "to": "payload.qty",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "pincodeRes",
+                "pt": "flow",
+                "to": "payload.pincode",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "addressRes",
+                "pt": "flow",
+                "to": "payload.address",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Variables set",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1300,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d8cf089d86c83e29",
+        "type": "twilio out",
+        "z": "ce8850f1c363c85e",
+        "twilio": "d35ea2e08075f3e7",
+        "twilioType": "sms",
+        "url": "",
+        "number": "+919734763814",
+        "name": "",
+        "x": 790,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "80b09ed3f7dd6870",
+        "type": "twilio out",
+        "z": "ce8850f1c363c85e",
+        "twilio": "d35ea2e08075f3e7",
+        "twilioType": "sms",
+        "url": "",
+        "number": "+919734763814",
+        "name": "",
+        "x": 830,
+        "y": 200,
+        "wires": []
     }
 ]
